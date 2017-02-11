@@ -3,5 +3,11 @@ services:
   web:
     build: .
     image: hub-board
+    command:
+      - rails
+      - s
+    ports:
+      - "3000:3000"
     volumes:
       - .:/var/app
+      - /var/app/vendor

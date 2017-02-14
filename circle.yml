@@ -5,7 +5,7 @@ machine:
     version: 2.4.0
 dependencies:
 database:
-  override: false
+  override: ls
 test:
   post:
     - bundle exec rspec spec/

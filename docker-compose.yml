@@ -11,3 +11,12 @@ services:
     volumes:
       - .:/var/app
       - /var/app/vendor
+    links:
+      - rdb
+  rdb:
+    image: mysql:8.0.0
+    env_file: .docker/env
+    ports:
+      - "3306:3306"
+    volumes:
+      - .docker/mysqld/my.conf:/etc/mysql/conf.d

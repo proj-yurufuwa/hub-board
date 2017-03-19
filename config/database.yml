@@ -1,6 +1,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  collation: utf8_general_ci
   reconnect: false
   username: mysql
   password: mysql 
@@ -10,12 +11,12 @@ default: &default
 
 development:
   <<: *default
-  database: hub-board_development
+  database: hub_board_development
 
 test:
   <<: *default
-  database: hub-board_test
+  database: hub_board_test
 
 production:
   <<: *default
-  datebase: hub-board_production
+  datebase: hub_board_production

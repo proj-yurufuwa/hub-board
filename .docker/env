@@ -1,3 +1,4 @@
 MYSQL_USER=mysql
 MYSQL_PASSWORD=mysql
 MYSQL_ALLOW_EMPTY_PASSWORD=yes
+MYSQL_DATABASE=hub_board_development

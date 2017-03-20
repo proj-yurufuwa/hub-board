@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(version: 20170319123315) do
 
   create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "text", null: false
+    t.string   "text",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

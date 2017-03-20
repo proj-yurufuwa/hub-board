@@ -15,8 +15,8 @@ services:
       - rdb
   rdb:
     image: mysql:8.0.0
-    env_file: .docker/env
+    env_file: .docker/mysql/env
     ports:
       - "3306:3306"
     volumes:
-      - .docker/mysqld/my.conf:/etc/mysql/conf.d
+      - .docker/mysql/mysql.d:/etc/mysql/conf.d

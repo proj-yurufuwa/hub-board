@@ -3,9 +3,7 @@ services:
   web:
     build: .
     image: hub-board
-    command:
-      - rails
-      - s
+    command: rails s -b '0.0.0.0' -p 3000
     ports:
       - "3000:3000"
     volumes:
@@ -15,8 +13,8 @@ services:
       - rdb
   rdb:
     image: mysql:8.0.0
-    env_file: .docker/env
+    env_file: .docker/mysql/env
     ports:
       - "3306:3306"
     volumes:
-      - .docker/mysqld/my.conf:/etc/mysql/conf.d
+      - .docker/mysql/conf.d:/etc/mysql/conf.d

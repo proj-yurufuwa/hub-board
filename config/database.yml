@@ -16,6 +16,7 @@ development:
 test:
   <<: *default
   username: root
+  host: 127.0.0.1
   database: hub_board_test
 
 production:

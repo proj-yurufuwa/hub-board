@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
+  build:
     working_directory: ~/
     docker:
       - image: ruby:2.4.0
-      - mysql: ${MYSQL_VERSION}
+      - image: mysql:${MYSQL_VERSION}
         environment:
             MYSQL_USER: mysql
             MYSQL_ALLOW_EMPTY_PASSWORD: yes

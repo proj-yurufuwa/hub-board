@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: Library install
-          command: apt-get update && apt-get install ruby-uglifier
+          command: apt-get update && apt-get install -y ruby-uglifier
       - run:
           name: Install Ruby Dependencies
           command: bundle install

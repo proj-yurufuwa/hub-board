@@ -1,20 +1,25 @@
-machine:
-  timezone:
-    Asia/Tokyo
-  ruby:
-    version: 2.4.0
-  services:
-    - "docker"
-dependencies:
-  override:
-    - bundle install:
-        timeout: 180
-    - docker run --detach --publish ${MYSQL_PORT}:3306 --env MYSQL_ALLOW_EMPTY_PASSWORD=yes mysql:${MYSQL_VERSION}
-    - mysqladmin --host=127.0.0.1 --port=${MYSQL_PORT} --user=${MYSQL_USER} --wait ping
-database:
-  override:
-    - bundle exec rake db:create db:schema:load RAILS_ENV=test
-    - bundle exec rake db:migrate RAILS_ENV=test
-test:
-  post:
-    - bundle exec rspec -p spec/
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+    docker:
+      - image: ruby:2.4.0
+      - mysql: ${MYSQL_VERSION}
+        environment:
+            MYSQL_USER: mysql
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_DATABASE: hub_board_test
+    steps:
+      - checkout
+      - run:
+          name: Install Ruby Dependencies
+          command: bundle install
+      - run:
+          name: Create DB
+          command: bundle exec rake db:create db:schema:load --trace
+      - run:
+          name: DB Migrations
+          command: bundle exec rake db:migrate
+      - run:
+          name: Run Tests
+          command: bundle exec rspec -p spec/

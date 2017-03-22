@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-  build:
-    working_directory: ~/
     docker:
       - image: ruby:2.4.0
       - image: mysql:8.0.0
@@ -10,6 +8,7 @@ jobs:
             MYSQL_USER: mysql
             MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_DATABASE: hub_board_test
+    working_directory: ~/hub-board
     steps:
       - checkout
       - run:

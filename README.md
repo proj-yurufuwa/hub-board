@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+開発者のための、コミュニケーションアプリです。
 
-Things you may want to cover:
+このアプリの開発に興味のある方はまずは
 
-* Ruby version
+.github/CONTRIBUTING.md
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+を見て、開発方法を学んでください。

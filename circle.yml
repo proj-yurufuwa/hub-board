@@ -12,14 +12,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Library install
+          command: apt-get update && apt-get install ruby-uglifier
+      - run:
           name: Install Ruby Dependencies
           command: bundle install
       - run:
           name: Create DB
-          command: bundle exec rake db:create db:schema:load --trace
+          command: bundle exec rake db:create db:schema:load --trace RAILS_ENV=test
       - run:
           name: DB Migrations
-          command: bundle exec rake db:migrate
+          command: bundle exec rake db:migrate RAILS_ENV=test
       - run:
           name: Run Tests
           command: bundle exec rspec -p spec/

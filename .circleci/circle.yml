@@ -11,12 +11,18 @@ jobs:
     working_directory: ~/hub-board
     steps:
       - checkout
+      - restore_cache:
+          key: projectname-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: Library install
           command: apt-get update && apt-get install -y ruby-uglifier
       - run:
           name: Install Ruby Dependencies
-          command: bundle install
+          command: bundle install --path vendor/bundle
+      - save_cache:
+          key: projectname-{{ .Branch }}-{{ checksum "Gemfile.lock" {% raw %}}}
+          paths:
+            - "vendor/bundle"
       - run:
           name: Create DB
           command: bundle exec rake db:create db:schema:load --trace RAILS_ENV=test
@@ -25,4 +31,4 @@ jobs:
           command: bundle exec rake db:migrate RAILS_ENV=test
       - run:
           name: Run Tests
-          command: bundle exec rspec -p spec/
+          command: bundle exec rspec -p test/
